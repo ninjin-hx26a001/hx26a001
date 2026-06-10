@@ -162,7 +162,7 @@ export default function BattleTab({ stats, onBattleFinish, onSyncHp, onUseCarrot
 
     const logList = [
       ...battle.battleLog,
-      `⚔️ ゆうしゃの こうげき！ 「${battle.enemy.jpName}」に ${dmg} の ダメージ！`,
+      `⚔️ うさぎの こうげき！ 「${battle.enemy.jpName}」に ${dmg} の ダメージ！`,
     ];
 
     if (rabbitDmg > 0) {
@@ -226,7 +226,7 @@ export default function BattleTab({ stats, onBattleFinish, onSyncHp, onUseCarrot
 
         const logs = [
           ...battle.battleLog,
-          `🥕 ゆうしゃは 「${carrot.jpName}」を なげつけた！ 「${calculatedDmg}」の ダメージ！`,
+          `🥕 うさぎは 「${carrot.jpName}」を なげつけた！ 「${calculatedDmg}」の ダメージ！`,
         ];
 
         if (isFreezed) {
@@ -273,7 +273,7 @@ export default function BattleTab({ stats, onBattleFinish, onSyncHp, onUseCarrot
 
       const logs = [
         ...battle.battleLog,
-        `😋 ゆうしゃは 「${carrot.jpName}」を かじった！ キズが ${healAmt} 回復した！`,
+        `😋 うさぎは 「${carrot.jpName}」を かじった！ キズが ${healAmt} 回復した！`,
       ];
 
       let nextAtkBoost = battle.playerBuffs.atkBoostRemaining;
@@ -317,7 +317,7 @@ export default function BattleTab({ stats, onBattleFinish, onSyncHp, onUseCarrot
       },
       battleLog: [
         ...prev.battleLog,
-        `🛡️ ゆうしゃは をがっちり まもっている！ HPが 15 回復した！`,
+        `🛡️ うさぎは からだを がっちり まもっている！ HPが 15 回復した！`,
       ],
       isPlayerTurn: false,
     }));
@@ -348,7 +348,7 @@ export default function BattleTab({ stats, onBattleFinish, onSyncHp, onUseCarrot
 
         const nextLogs = [
           ...prev.battleLog,
-          `💀 「${prev.enemy.jpName}」の こうげき！ ゆうしゃは ${baseAtkDmg} の ダメージを うけた！`,
+          `💀 「${prev.enemy.jpName}」の こうげき！ うさぎは ${baseAtkDmg} の ダメージを うけた！`,
         ];
 
         const nextStatus = finalHp <= 0 ? 'defeat' : 'fighting';
@@ -438,7 +438,7 @@ export default function BattleTab({ stats, onBattleFinish, onSyncHp, onUseCarrot
       ...prev,
       battleLog: [
         ...prev.battleLog,
-        `😭 ゆうしゃは ちからつきて しまった...`,
+        `😭 うさぎは ちからつきて しまった...`,
         `🏡 のうえんの おうちに はこばれ、ゆっくり 療養した。`,
       ],
     }));
@@ -549,7 +549,7 @@ export default function BattleTab({ stats, onBattleFinish, onSyncHp, onUseCarrot
         <div className="border-2 border-white bg-zinc-950 p-2.5 relative">
           <div className="absolute top-1 right-2 text-[10px] text-zinc-645">STATUS</div>
           <div className="text-yellow-400 font-bold mb-1 border-b border-zinc-800 pb-1.5 flex justify-between">
-            <span>👤 ゆうしゃ</span>
+            <span>👤 うさぎ</span>
             <span>Lv {stats.level}</span>
           </div>
           <div className="space-y-1.5 mt-1 text-xs md:text-sm leading-relaxed">
@@ -664,7 +664,7 @@ export default function BattleTab({ stats, onBattleFinish, onSyncHp, onUseCarrot
         {/* ゆうしゃ側 */}
         <div className="flex items-center justify-between sm:justify-start gap-2 border-b sm:border-b-0 pb-1 sm:pb-0 border-zinc-800 border-dashed">
           <div className="flex items-center gap-1 shrink-0">
-            <span className="text-yellow-400">👤 ゆうしゃ</span>
+            <span className="text-yellow-400">👤 うさぎ</span>
             <span className="text-zinc-500 text-[9px] font-normal">Lv.{stats.level}</span>
           </div>
           <div className="flex items-center gap-2 flex-grow max-w-[160px] sm:max-w-[200px]">

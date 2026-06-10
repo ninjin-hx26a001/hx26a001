@@ -320,7 +320,7 @@ export default function App() {
     }
 
     if (stats.hp >= stats.maxHp) {
-      triggerAlert('💖 ゆうしゃの HPは すでに まんたんだ！ これ以上 食べても 効果が なさそうだ！', 'info');
+      triggerAlert('💖 うさぎの HPは すでに まんたんだ！ これ以上 食べても 効果が なさそうだ！', 'info');
       return;
     }
 
@@ -342,7 +342,7 @@ export default function App() {
       };
     });
 
-    triggerAlert(`😋 ゆうしゃは「${carrotDetail.jpName}」を むしゃむしゃ たべた！ HPが ${healAmount} かいふくした！`, 'success');
+    triggerAlert(`😋 うさぎは「${carrotDetail.jpName}」を むしゃむしゃ たべた！ HPが ${healAmount} かいふくした！`, 'success');
   };
 
   // 戦闘終了
@@ -398,7 +398,7 @@ export default function App() {
         triggerAlert(`⚔️ 攻略に せいこうした！ ほうしゅうとして +${goldEarned}G / +${expEarned}EXP をえた！${seedDropText}`, 'success');
       }
     } else {
-      triggerAlert('🤕 ゆうしゃは たおれたが、にんじんスープを のんで いきかえった！', 'info');
+      triggerAlert('🤕 うさぎは たおれたが、にんじんスープを のんで いきかえった！', 'info');
     }
   };
 

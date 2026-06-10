@@ -29,7 +29,7 @@ export default function GameHeader({ stats, onShowTutorial, onEatCarrot, isBattl
           
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
-              <h1 className="text-sm font-bold text-white tracking-widest">🎯 ゆうしゃ (うさぎ)</h1>
+              <h1 className="text-sm font-bold text-white tracking-widest">🎯 うさぎ</h1>
               <span className="text-[9px] border border-green-400 text-green-400 px-1.5 py-0.5 font-bold">
                 キャロットマスター
               </span>
