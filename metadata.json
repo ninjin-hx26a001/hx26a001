@@ -1,0 +1,6 @@
+{
+  "name": "にんじんクエスト",
+  "description": "にんじんを 栽培・収穫し、その大地の ちからを つかって 野菜帝国の 魔物に 立ち向かう、本格ドット風キャロットRPG。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
