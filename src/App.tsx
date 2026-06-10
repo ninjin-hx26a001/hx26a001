@@ -182,6 +182,56 @@ export default function App() {
     triggerAlert(`🌾 「${carrotConfig.jpName}」を しゅうかくした！`, 'success');
   };
 
+  // 一斉収穫する
+  const handleHarvestAll = (grownPlotIds: number[]) => {
+    if (grownPlotIds.length === 0) return;
+
+    // どの種類のタネがいくつ収穫されたかをカウントする
+    const harvestedCounts: Record<CarrotType, number> = {} as Record<CarrotType, number>;
+    
+    plots.forEach((p) => {
+      if (grownPlotIds.includes(p.id) && p.seedId) {
+        harvestedCounts[p.seedId] = (harvestedCounts[p.seedId] || 0) + 1;
+      }
+    });
+
+    // plotsを更新
+    setPlots((prevPlots) =>
+      prevPlots.map((p) => {
+        if (grownPlotIds.includes(p.id)) {
+          return {
+            ...p,
+            seedId: null,
+            plantedAt: null,
+            duration: 0,
+            isWatered: false,
+            wateredAt: null,
+          };
+        }
+        return p;
+      })
+    );
+
+    // statsを更新
+    setStats((prev) => {
+      const nextInventory = { ...prev.inventory };
+      (Object.keys(harvestedCounts) as CarrotType[]).forEach((type) => {
+        nextInventory[type] = (nextInventory[type] || 0) + harvestedCounts[type];
+      });
+      return {
+        ...prev,
+        inventory: nextInventory,
+      };
+    });
+
+    // 収穫物のテキストリストを作成
+    const detailTexts = (Object.keys(harvestedCounts) as CarrotType[])
+      .map((type) => `「${CARROT_TEMPLATES[type].jpName}」x${harvestedCounts[type]}`)
+      .join('、');
+
+    triggerAlert(`🌾 ${detailTexts} を いっせいしゅうかくした！`, 'success');
+  };
+
   // タネを買う
   const handleBuySeed = (seedType: CarrotType, cost: number, amount: number = 1) => {
     const totalCost = cost * amount;
@@ -498,6 +548,7 @@ export default function App() {
               onPlant={handlePlant}
               onWater={handleWater}
               onHarvest={handleHarvest}
+              onHarvestAll={handleHarvestAll}
               onBuySeed={handleBuySeed}
             />
           )}

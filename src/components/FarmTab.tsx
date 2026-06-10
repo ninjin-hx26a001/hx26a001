@@ -9,10 +9,11 @@ interface FarmTabProps {
   onPlant: (plotId: number, seedType: CarrotType) => void;
   onWater: (plotId: number) => void;
   onHarvest: (plotId: number) => void;
+  onHarvestAll: (grownPlotIds: number[]) => void;
   onBuySeed: (seedType: CarrotType, cost: number, amount: number) => void;
 }
 
-export default function FarmTab({ stats, plots, onPlant, onWater, onHarvest, onBuySeed }: FarmTabProps) {
+export default function FarmTab({ stats, plots, onPlant, onWater, onHarvest, onHarvestAll, onBuySeed }: FarmTabProps) {
   const [selectedSeed, setSelectedSeed] = useState<CarrotType>('normal');
   const [plotProgresses, setPlotProgresses] = useState<Record<number, number>>({});
   const [harvestTips, setHarvestTips] = useState<{ id: number; text: string; x: number; y: number }[]>([]);
@@ -66,6 +67,18 @@ export default function FarmTab({ stats, plots, onPlant, onWater, onHarvest, onB
       setTimeout(() => {
         setHarvestTips((prev) => prev.filter((t) => t.id !== newTip.id));
       }, 1500);
+    }
+  };
+
+  const grownPlots = plots.filter((plot) => {
+    const progress = plotProgresses[plot.id] || 0;
+    return !!plot.seedId && progress >= 100;
+  });
+
+  const handleHarvestAllClick = (e: React.MouseEvent) => {
+    const grownIds = grownPlots.map((p) => p.id);
+    if (grownIds.length > 0) {
+      onHarvestAll(grownIds);
     }
   };
 
@@ -227,8 +240,18 @@ export default function FarmTab({ stats, plots, onPlant, onWater, onHarvest, onB
               <span className="text-yellow-400 font-bold text-xs md:text-sm">▶ にんじんはたけ</span>
             </div>
             
-            <div className="text-[10px] sm:text-xs text-cyan-400 font-bold border border-cyan-900 bg-cyan-950/40 px-2.5 py-1.5 flex items-center gap-1">
-              💦 みずやりで せいちょうそくど 2ばい！
+            <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap">
+              {grownPlots.length > 0 && (
+                <button
+                  onClick={handleHarvestAllClick}
+                  className="bg-yellow-500 hover:bg-yellow-400 text-black font-bold text-[10px] sm:text-xs px-3 py-1.5 border-2 border-white tracking-widest active:translate-y-0.5 transition cursor-pointer flex items-center gap-1 animate-pulse"
+                >
+                  🌾 いっせいしゅうかく ({grownPlots.length}こ)
+                </button>
+              )}
+              <div className="text-[10px] sm:text-xs text-cyan-400 font-bold border border-cyan-900 bg-cyan-950/40 px-2.5 py-1.5 flex items-center gap-1">
+                💦 みずやりで せいちょうそくど 2ばい！
+              </div>
             </div>
           </div>
 
